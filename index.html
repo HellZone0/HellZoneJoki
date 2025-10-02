@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Price List Joki AFK Fish It</title>
+<title>Price List Jasa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,11 +14,10 @@
     --text-light: #ffffff;
     --primary-blue: #0ea5e9;
     --accent-purple: #8b5cf6;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-light: rgba(255, 255, 255, 0.1);
-    --shadow-dark: rgba(0, 0, 0, 0.3);
-    --button-bg: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --border-color: rgba(255, 255, 255, 0.15);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --button-bg: linear-gradient(90deg, #0ea5e9, #8b5cf6);
   }
   body {
     font-family: 'Poppins', sans-serif;
@@ -26,7 +25,8 @@
     color: var(--text-light);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
     padding: 40px 20px;
     margin: 0;
     text-align: center;
@@ -101,23 +101,23 @@
     transform: rotate(-30deg);
   }
   .container {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: rgba(26, 27, 56, 0.8);
     border-radius: 20px;
     padding: 40px 20px;
     max-width: 650px;
     width: 100%;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 40px var(--shadow-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 1;
     position: relative;
+    margin-bottom: 40px;
   }
   h1 {
     font-size: 2.5em;
     font-weight: 700;
     color: transparent;
-    background-image: var(--button-bg);
+    background-image: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
     -webkit-background-clip: text;
     background-clip: text;
     margin-bottom: 10px;
@@ -135,19 +135,20 @@
     margin-bottom: 40px;
   }
   .price-card {
-    background-color: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 25px;
+    backdrop-filter: blur(10px);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 4px 6px var(--shadow-dark), inset 0 0 5px var(--shadow-light);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.05);
   }
   .price-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 30px var(--shadow-dark), 0 0 15px var(--accent-purple);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-purple);
   }
   .price-card h2 {
     font-size: 1.5em;
@@ -208,8 +209,8 @@
     margin-top: 20px;
   }
   .payment-card {
-    background-color: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 20px;
     display: flex;
@@ -220,10 +221,9 @@
     transition: background-color 0.3s, transform 0.3s;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 4px 6px var(--shadow-dark);
   }
   .payment-card:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-5px);
   }
   .payment-card .icon {
@@ -284,17 +284,15 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background-color: var(--card-bg);
     color: var(--text-light);
     font-size: 1.5em;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 6px var(--shadow-dark);
   }
   .social-btn:hover {
     transform: translateY(-5px);
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
   }
   .popup-overlay {
     position: fixed;
@@ -354,6 +352,12 @@
     visibility: visible;
     opacity: 1;
   }
+  .separator {
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    margin: 40px auto;
+  }
 </style>
 </head>
 <body>
@@ -365,8 +369,7 @@
 
 <div class="container">
   <h1>PRICE LIST</h1>
-  <p class="subtitle">JOKI AFK FISH IT AMAN DAN TERPERCAYA</p>
-
+  <p class="subtitle">JASA AFK FISH IT AMAN DAN TERPERCAYA</p>
   <div class="price-grid">
     <div class="price-card">
       <h2>1 HARI</h2>
@@ -399,19 +402,70 @@
       <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
     </div>
   </div>
-
   <div class="section">
-    <h3>BENEFIT JOKI</h3>
-    <p>Dapatkan berbagai keuntungan saat menggunakan layanan joki kami:</p>
+    <h3>BENEFIT JASA</h3>
+    <p>Dapatkan berbagai keuntungan saat menggunakan layanan jasa kami:</p>
     <ul>
       <li>Tas Tidak Akan Dibuka</li>
-      <li>Joki Via Login</li>
-      <li>Mendapatkan Waktu Joki Tambahan</li>
+      <li>Jasa Via Login</li>
+      <li>Mendapatkan Waktu Jasa Tambahan</li>
       <li>Bebas Memilih Spot</li>
     </ul>
   </div>
+</div>
 
+<div class="separator"></div>
+
+<div class="container">
+  <h1>PRICE LIST</h1>
+  <p class="subtitle">JASA COIN AMAN DAN TERPERCAYA</p>
+  <div class="price-grid">
+    <div class="price-card">
+      <h2>1M</h2>
+      <p>11.000 RP</p>
+      <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
+    </div>
+    <div class="price-card">
+      <h2>2M</h2>
+      <p>21.000 RP</p>
+      <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
+    </div>
+    <div class="price-card">
+      <h2>3M</h2>
+      <p>31.000 RP</p>
+      <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
+    </div>
+    <div class="price-card">
+      <h2>3M</h2>
+      <p>41.000 RP</p>
+      <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
+    </div>
+    <div class="price-card">
+      <h2>4M</h2>
+      <p>51.000 RP</p>
+      <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
+    </div>
+    <div class="price-card">
+      <h2>5M</h2>
+      <p>61.000 RP</p>
+      <a href="https://discord.gg/KbSJk2uaVs" class="buy-btn" target="_blank">Beli Sekarang</a>
+    </div>
+  </div>
   <div class="section">
+    <h3>KEUNGGULAN JASA KAMI</h3>
+    <ul>
+      <li>Hasil Pancingan 100% Milik Anda</li>
+      <li>Keamanan Akun Terjamin</li>
+      <li>Proses Jasa 24/7 Anti Mancing Kayu</li>
+      <li>Respons Cepat dan Ramah</li>
+      <li>Mendapatkan Bonus Coin Untuk Yang Jasa di Atas 3M</li>
+    </ul>
+  </div>
+</div>
+
+<div class="separator"></div>
+
+<div class="container">
     <h3>PAYMENT</h3>
     <div class="payment-grid">
       <div class="payment-card" onclick="showPopup('qris')">
@@ -452,8 +506,6 @@
         </div>
       </div>
     </div>
-  </div>
-
   <div class="contact-info">
     <p style="margin-bottom: 10px; color: #a1a1aa;">Hubungi Kami:</p>
     <div class="social-buttons">
@@ -476,17 +528,35 @@
 <div id="toast" class="toast"></div>
 
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const particlesContainer = document.getElementById('particles-container');
+    const numParticles = 50;
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 3 + 1;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+      particle.style.left = `${x}px`;
+      particle.style.top = `${y}px`;
+      const moveX = (Math.random() - 0.5) * 200;
+      const moveY = (Math.random() - 0.5) * 200;
+      particle.style.setProperty('--x', `${moveX}px`);
+      particlesContainer.appendChild(particle);
+    }
+  });
+
+  const qrisPopup = document.getElementById('qris-popup');
+  const qrisImage = document.getElementById('qris-image');
   function showPopup(type) {
-    const qrisPopup = document.getElementById('qris-popup');
-    const qrisImage = document.getElementById('qris-image');
     if (type === 'qris') {
       qrisImage.src = 'https://files.catbox.moe/2cz13x.jpg';
       qrisPopup.style.display = 'flex';
     }
   }
-
   function hidePopup() {
-    const qrisPopup = document.getElementById('qris-popup');
     qrisPopup.style.display = 'none';
   }
 
