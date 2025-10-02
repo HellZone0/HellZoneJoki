@@ -68,7 +68,7 @@
     }
   }
   .circuit-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -79,10 +79,10 @@
     z-index: -2;
   }
   .ornament {
-    position: absolute;
+    position: fixed;
     background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
     opacity: 0.6;
-    z-index: 0;
+    z-index: -1;
     border-radius: 30px;
     filter: blur(50px);
   }
@@ -100,6 +100,21 @@
     height: 200px;
     transform: rotate(-30deg);
   }
+  .logo-brand {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 60px; /* Diubah dari 80px */
+    height: auto;
+    z-index: 100;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  .logo-brand:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
   .container {
     background: rgba(26, 27, 56, 0.8);
     border-radius: 20px;
@@ -112,21 +127,35 @@
     z-index: 1;
     position: relative;
     margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .container.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
   h1 {
     font-size: 2.5em;
     font-weight: 700;
+    background-image: linear-gradient(90deg, var(--primary-blue), var(--accent-purple), var(--primary-blue));
+    background-size: 200% auto;
     color: transparent;
-    background-image: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
     -webkit-background-clip: text;
     background-clip: text;
     margin-bottom: 10px;
+    animation: text-gradient-animation 3s linear infinite;
   }
   .subtitle {
     font-size: 1em;
     font-weight: 400;
     color: #a1a1aa;
     margin-bottom: 30px;
+  }
+  @keyframes text-gradient-animation {
+    to {
+      background-position: 200% center;
+    }
   }
   .price-grid {
     display: grid;
@@ -221,39 +250,41 @@
     transition: background-color 0.3s, transform 0.3s;
     cursor: pointer;
     position: relative;
+    height: 100px;
   }
   .payment-card:hover {
     background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-5px);
   }
+  .payment-card .icon-container {
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .payment-card:hover .icon-container {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
   .payment-card .icon {
     font-size: 2.5em;
     color: var(--primary-blue);
-    transition: opacity 0.3s;
   }
   .payment-card p.name {
     margin: 0;
     font-weight: 500;
-    transition: opacity 0.3s;
   }
   .payment-card .payment-info {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
-    transition: opacity 0.3s;
-    white-space: nowrap;
+    transition: transform 0.3s, opacity 0.3s;
     font-weight: 600;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  .payment-card:hover .icon,
-  .payment-card:hover .name {
-    opacity: 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
   }
   .payment-card:hover .payment-info {
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
   .payment-info .copy-btn {
@@ -358,6 +389,27 @@
     background: linear-gradient(90deg, transparent, var(--border-color), transparent);
     margin: 40px auto;
   }
+
+  @media only screen and (max-width: 600px) {
+    .container {
+      padding: 20px 10px;
+    }
+    .price-grid, .payment-grid {
+      grid-template-columns: 1fr;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    .subtitle {
+      font-size: 0.9em;
+    }
+    .social-buttons {
+      gap: 10px;
+    }
+    .payment-card .payment-info {
+      font-size: 0.8em;
+    }
+  }
 </style>
 </head>
 <body>
@@ -367,7 +419,9 @@
 <div class="ornament top-left"></div>
 <div class="ornament bottom-right"></div>
 
-<div class="container">
+<img src="https://files.catbox.moe/w1bdyr.png" alt="Brand Logo" class="logo-brand">
+
+<div class="container animate-on-scroll">
   <h1>PRICE LIST JASA AFK</h1>
   <p class="subtitle">JASA AFK FISH IT AMAN DAN TERPERCAYA</p>
   <div class="price-grid">
@@ -416,7 +470,7 @@
 
 <div class="separator"></div>
 
-<div class="container">
+<div class="container animate-on-scroll">
   <h1>PRICE LIST JASA COIN</h1>
   <p class="subtitle">JASA COIN AMAN DAN TERPERCAYA</p>
   <div class="price-grid">
@@ -465,29 +519,22 @@
 
 <div class="separator"></div>
 
-<div class="container">
+<div class="container animate-on-scroll">
+  <div class="section">
     <h3>PAYMENT</h3>
     <div class="payment-grid">
       <div class="payment-card" onclick="showPopup('qris')">
-        <i class="fa-solid fa-qrcode icon"></i>
-        <p class="name">QRIS</p>
-        <div class="payment-info">
-          Scan for payment
+        <div class="icon-container">
+          <i class="fa-solid fa-qrcode icon"></i>
+          <p class="name">QRIS</p>
         </div>
+        <div class="payment-info">Scan for payment</div>
       </div>
       <div class="payment-card">
-        <i class="fa-solid fa-wallet icon"></i>
-        <p class="name">DANA</p>
-        <div class="payment-info">
-          <span>082115916545</span>
-          <button class="copy-btn" onclick="copyToClipboard('082115916545', event)">
-            <i class="fa-solid fa-copy"></i>
-          </button>
+        <div class="icon-container">
+          <i class="fa-solid fa-wallet icon"></i>
+          <p class="name">DANA</p>
         </div>
-      </div>
-      <div class="payment-card">
-        <i class="fa-solid fa-mobile-screen-button icon"></i>
-        <p class="name">SHOPEE PAY</p>
         <div class="payment-info">
           <span>082115916545</span>
           <button class="copy-btn" onclick="copyToClipboard('082115916545', event)">
@@ -496,8 +543,22 @@
         </div>
       </div>
       <div class="payment-card">
-        <i class="fa-solid fa-money-check-dollar icon"></i>
-        <p class="name">SEABANK</p>
+        <div class="icon-container">
+          <i class="fa-solid fa-mobile-screen-button icon"></i>
+          <p class="name">SHOPEE PAY</p>
+        </div>
+        <div class="payment-info">
+          <span>082115916545</span>
+          <button class="copy-btn" onclick="copyToClipboard('082115916545', event)">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+      <div class="payment-card">
+        <div class="icon-container">
+          <i class="fa-solid fa-money-check-dollar icon"></i>
+          <p class="name">SEABANK</p>
+        </div>
         <div class="payment-info">
           <span>901663847047</span>
           <button class="copy-btn" onclick="copyToClipboard('901663847047', event)">
@@ -506,6 +567,7 @@
         </div>
       </div>
     </div>
+  </div>
   <div class="contact-info">
     <p style="margin-bottom: 10px; color: #a1a1aa;">Hubungi Kami:</p>
     <div class="social-buttons">
@@ -577,6 +639,22 @@
       toast.className = toast.className.replace("show", "");
     }, 3000);
   }
+
+  const containers = document.querySelectorAll('.container');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  containers.forEach(container => {
+    observer.observe(container);
+  });
 </script>
 
 </body>
